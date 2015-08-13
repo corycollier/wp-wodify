@@ -1,0 +1,22 @@
+{
+  "name"              : "corycollier/work-theme",
+  "description"       : "A theme to showcase development work",
+  "prefer-stable"     : false,
+  "minimum-stability" : "dev",
+  "require"           : {
+    "johnpbloch/wordpress" : "^4.2"
+  },
+  "require-dev" : {
+    "phpunit/phpunit"           : "^4.7",
+    "phpunit/php-code-coverage" : "^2.1",
+    "phploc/phploc"             : "^2.1",
+    "zerkalica/phpcs"           : "dev-master"
+  },
+  "license" : "MIT",
+  "authors" : [
+    {
+      "name"  : "Cory Collier",
+      "email" : "corycollier@corycollier.com"
+    }
+  ]
+}
