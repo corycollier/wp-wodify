@@ -1,10 +1,13 @@
 # files
 .DS_Store
-.cache-properties
+cache.properties
 composer.lock
 
 # folders
 build/html/
+build/logs/
+build/coverage/
+build/api
 .sass-cache/
 vendor/
 wordpress/

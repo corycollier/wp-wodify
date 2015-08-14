@@ -33,12 +33,17 @@
     <copy todir="${basedir}/build/html/">
       <fileset dir="${basedir}/wordpress" />
     </copy>
-    <copy todir="${basedir}/build/html/wp-content/themes/work-theme">
+  </target>
+
+  <target name="copy-src">
+
+    <copy todir="${basedir}/build/html/wp-content/plugins/wp-wodify">
       <fileset dir="${basedir}/src">
         <exclude name="sass/*" />
         <exclude name="bower.json" />
       </fileset>
     </copy>
+
   </target>
 
   <target name="lint"
