@@ -1,10 +1,9 @@
 <?php
 
 /**
- * sets up all of the post types for this plugin
- * @return [type] [description]
+ * Creates a coach post type
  */
-function wp_wodify_posts_register_post_types ( ) {
+function wp_wodify_posts_register_post_type_coach ( ) {
   register_post_type( 'wp_wodify_coach',
     array(
       '_builtin'    => false,
@@ -26,7 +25,13 @@ function wp_wodify_posts_register_post_types ( ) {
       ),
     )
   );
+}
 
+
+/**
+ * Creates a location post type
+ */
+function wp_wodify_posts_register_post_type_location ( ) {
   register_post_type( 'wp_wodify_location',
     array(
       '_builtin'    => false,
@@ -81,7 +86,8 @@ function wp_wodify_posts_register_taxonomy ( ) {
 
 }
 
-
+add_action( 'wp_wodify_create_post_type_coach', 'wp_wodify_posts_register_post_type_coach' );
+add_action( 'wp_wodify_create_post_type_location', 'wp_wodify_posts_register_post_type_location' );
 
     // 'classes'      => 'http://app.wodify.com/API/Classes_v1.aspx',
     // 'coaches'      => 'http://app.wodify.com/API/Coaches_v1.aspx',

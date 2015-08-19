@@ -35,7 +35,17 @@ function wp_wodify_admin_options ( ) {
   echo '</form>'
     , '</div>'
   ;
+}
 
+/**
+ * registers the settings that are unique to the plugin
+ */
+function wp_wodify_admin_register_settings ( ) {
+  register_setting( 'wp-wodify-settings-group', 'wp-wodify-api-key' );
+  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-classes' );
+  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-coaches' );
+  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-locations' );
+  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-programs' );
 }
 
 
@@ -43,13 +53,6 @@ function wp_wodify_admin_options ( ) {
  * Function to register the settings with the settings api
  */
 function wp_wodify_admin_init ( ) {
-
-  register_setting( 'wp-wodify-settings-group', 'wp-wodify-api-key' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-classes' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-coaches' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-locations' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-programs' );
-
   add_settings_section( 'section-one'
     , 'Section One'
     , 'wp_wodify_admin_section_callback'

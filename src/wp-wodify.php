@@ -43,3 +43,4 @@ register_deactivation_hook( __FILE__, 'wp_wodify_uninstall' );
 
 // add the menu for the admin page
 add_action( 'admin_menu', 'wp_wodify_admin_menu' );
+add_action( 'admin_init', 'wp_wodify_admin_register_settings' );
