@@ -22,6 +22,8 @@ function wp_wodify_admin_options ( ) {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
 
+  wp_wodify_admin_init() ;
+
   echo '<div class="wrap">'
     , '<h2>WP Wodify Settings</h2>'
     , '<p>Change and update settings for Wodify integration here</p>'
@@ -35,6 +37,13 @@ function wp_wodify_admin_options ( ) {
   echo '</form>'
     , '</div>'
   ;
+
+  echo '<form action="' . admin_url( 'admin-post.php' ) . '">
+    <input type="hidden" name="action" value="wp_wodify_get_api_coaches">
+    <input type="text" name="test" value="">'
+  ; 
+    submit_button( 'Send' );
+  echo '</form>';
 }
 
 /**
@@ -82,7 +91,6 @@ function wp_wodify_admin_api_key_field_callback ( ) {
   $setting = esc_attr( get_option( 'wp-wodify-api-key' ) );
   echo '<input type="text" name="wp-wodify-api-key" value="' . $setting . '" />';
 }
-
 
 /**
  * function to handle api requests
@@ -132,3 +140,20 @@ function _wp_wodify_get_api_uri ($name = 'programs') {
 
   return $map[ $name ];
 }
+
+/**
+ * Gets the coaches from the Wodify API
+ */
+function wp_wodify_get_api_coaches ( ) {
+  $result = wp_wodify_api_request('coaches');
+  echo '<pre>' . $result . '</pre>';
+  echo '<p>hi</p>';
+  die;
+}
+
+
+add_action( 'admin_posts_wp_wodify_get_api_coaches', 'wp_wodify_get_api_coaches' );
+
+
+
+
