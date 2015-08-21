@@ -38,12 +38,11 @@ function wp_wodify_admin_options ( ) {
     , '</div>'
   ;
 
-  echo '<form action="' . admin_url( 'admin-post.php' ) . '">
-    <input type="hidden" name="action" value="wp_wodify_get_api_coaches">
-    <input type="text" name="test" value="">'
-  ; 
-    submit_button( 'Send' );
-  echo '</form>';
+  _wp_wodify_api_sync_form( 'classes' );
+  _wp_wodify_api_sync_form( 'coaches' );
+  _wp_wodify_api_sync_form( 'locations' );
+  _wp_wodify_api_sync_form( 'programs' );
+
 }
 
 /**
@@ -119,7 +118,7 @@ function wp_wodify_api_request ( $api_name, $params = array() ) {
 
   $result = curl_exec($ch);
 
-  return json_decode( $result );
+  return json_decode( $result, true );
 }
 
 /**
@@ -146,14 +145,67 @@ function _wp_wodify_get_api_uri ($name = 'programs') {
  */
 function wp_wodify_get_api_coaches ( ) {
   $result = wp_wodify_api_request('coaches');
-  echo '<pre>' . $result . '</pre>';
-  echo '<p>hi</p>';
-  die;
+  $option = 'wp-wodify-api-cache-coaches';
+  update_option( json_encode( $option ), $result );
 }
 
+/**
+ * Gets the classes from the Wodify API
+ */
+function wp_wodify_get_api_classes ( ) {
+  $result = wp_wodify_api_request('classes');
+  $option = 'wp-wodify-api-cache-classes';
+  update_option( json_encode( $option ), $result );
+}
 
-add_action( 'admin_posts_wp_wodify_get_api_coaches', 'wp_wodify_get_api_coaches' );
+/**
+ * Gets the locations from the Wodify API
+ */
+function wp_wodify_get_api_locations ( ) {
+  $result = wp_wodify_api_request('locations');
+  $option = 'wp-wodify-api-cache-locations';
+  update_option( json_encode( $option ), $result );
+}
+
+/**
+ * Gets the programs from the Wodify API
+ */
+function wp_wodify_get_api_programs ( ) {
+  $result = wp_wodify_api_request('programs');
+  $option = 'wp-wodify-api-cache-programs';
+  update_option( json_encode( $option ), $result );
+}
+
+/**
+ * creates a form to synchronize api settings from the wodify api
+ * @param  string $name the name of the api to sync with
+ * @return [type]       [description]
+ */
+function _wp_wodify_api_sync_form ( $name ) {
+
+  echo '<div class="wrap">
+    <h3>' . ucfirst($name) . ' Sync</h3>
+    <form action="' . admin_url( 'admin-post.php' ) . '">
+    <input type="hidden" name="action" value="wp_wodify_' . $name . 's_sync">'
+  ; 
+    submit_button( 'Synchronize' );
+
+  echo '</div>
+    </form>'
+  ;
+}
+
+add_action( 'admin_post_wp_wodify_coaches_sync', 'wp_wodify_get_api_coaches' );
+add_action( 'admin_post_wp_wodify_classes_sync', 'wp_wodify_get_api_classes' );
+add_action( 'admin_post_wp_wodify_locations_sync', 'wp_wodify_get_api_locations' );
+add_action( 'admin_post_wp_wodify_programs_sync', 'wp_wodify_get_api_programs' );
 
 
 
+
+
+  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-classes' );
+  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-coaches' );
+  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-locations' );
+  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-programs' );
 
