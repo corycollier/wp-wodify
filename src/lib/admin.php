@@ -186,7 +186,7 @@ function _wp_wodify_api_sync_form ( $name ) {
   echo '<div class="wrap">
     <h3>' . ucfirst($name) . ' Sync</h3>
     <form action="' . admin_url( 'admin-post.php' ) . '">
-    <input type="hidden" name="action" value="wp_wodify_' . $name . 's_sync">'
+    <input type="hidden" name="action" value="wp_wodify_' . $name . '_sync">'
   ; 
     submit_button( 'Synchronize' );
 
@@ -195,10 +195,10 @@ function _wp_wodify_api_sync_form ( $name ) {
   ;
 }
 
-add_action( 'admin_post_wp_wodify_coaches_sync', 'wp_wodify_get_api_coaches' );
-add_action( 'admin_post_wp_wodify_classes_sync', 'wp_wodify_get_api_classes' );
+add_action( 'admin_post_wp_wodify_coaches_sync',   'wp_wodify_get_api_coaches' );
+add_action( 'admin_post_wp_wodify_classes_sync',   'wp_wodify_get_api_classes' );
 add_action( 'admin_post_wp_wodify_locations_sync', 'wp_wodify_get_api_locations' );
-add_action( 'admin_post_wp_wodify_programs_sync', 'wp_wodify_get_api_programs' );
+add_action( 'admin_post_wp_wodify_programs_sync',  'wp_wodify_get_api_programs' );
 
 
 
