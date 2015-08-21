@@ -34,8 +34,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-require_once('lib/install.php');
-require_once('lib/admin.php');
+require_once 'lib/install.php';
+require_once 'lib/admin.php';
 
 // register the activation / deactivation hooks
 register_activation_hook( __FILE__, 'wp_wodify_install' );
