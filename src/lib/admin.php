@@ -49,17 +49,48 @@ function wp_wodify_admin_options ( ) {
   _wp_wodify_api_sync_form( 'programs' );
   echo '</div>';
 
+  _wp_wodify_admin_display_api_cache( 'coach', 'coaches' );
+  _wp_wodify_admin_display_api_cache( 'location', 'locations' );
+  _wp_wodify_admin_display_api_cache( 'program', 'programs' );
+  // _wp_wodify_admin_display_api_cache( 'class', 'classes' );
+
+  echo '</div>';
+
 }
+
+/**
+ * function to display api cache values
+ *
+ * @param string $name the name of the option
+ * @param string $plural the pluralized version of the name
+ */
+function _wp_wodify_admin_display_api_cache ( $name, $plural ) {
+  $proper_plural = ucfirst( $plural );
+  $proper_single = ucfirst( $name );
+  echo '<div class="wrap"><h2>', $proper_plural, '</h2>';
+
+  $option = get_option( '_wp_wodify_api_cache_' . $plural );
+  $values = json_decode( $option )->RecordList->{$proper_single};
+
+  $func = '_wp_wodify_admin_template_api_cache_' . $name;
+
+  foreach ($values as $value) {
+    call_user_func( $func, $value );
+  }
+
+  echo '</div>';
+}
+
 
 /**
  * registers the settings that are unique to the plugin
  */
 function wp_wodify_admin_register_settings ( ) {
   register_setting( 'wp-wodify-settings-group', 'wp-wodify-api-key' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-classes' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-coaches' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-locations' );
-  register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-programs' );
+  register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_classes' );
+  register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_coaches' );
+  register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_locations' );
+  register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_programs' );
 }
 
 
@@ -124,7 +155,7 @@ function wp_wodify_api_request ( $api_name, $params = array() ) {
 
   $result = curl_exec($ch);
 
-  return json_decode( $result, true );
+  return $result;
 }
 
 /**
@@ -151,8 +182,8 @@ function _wp_wodify_get_api_uri ($name = 'programs') {
  */
 function wp_wodify_get_api_coaches ( ) {
   $result = wp_wodify_api_request('coaches');
-  $option = 'wp-wodify-api-cache-coaches';
-  update_option( json_encode( $option ), $result );
+  $option = '_wp_wodify_api_cache_coaches';
+  update_option( $option , $result , false );
 }
 
 /**
@@ -160,8 +191,8 @@ function wp_wodify_get_api_coaches ( ) {
  */
 function wp_wodify_get_api_classes ( ) {
   $result = wp_wodify_api_request('classes');
-  $option = 'wp-wodify-api-cache-classes';
-  update_option( json_encode( $option ), $result );
+  $option = '_wp_wodify_api_cache_classes';
+  update_option( $option , $result , false );
 }
 
 /**
@@ -169,8 +200,8 @@ function wp_wodify_get_api_classes ( ) {
  */
 function wp_wodify_get_api_locations ( ) {
   $result = wp_wodify_api_request('locations');
-  $option = 'wp-wodify-api-cache-locations';
-  update_option( json_encode( $option ), $result );
+  $option = '_wp_wodify_api_cache_locations';
+  update_option( $option , $result , false );
 }
 
 /**
@@ -178,8 +209,8 @@ function wp_wodify_get_api_locations ( ) {
  */
 function wp_wodify_get_api_programs ( ) {
   $result = wp_wodify_api_request('programs');
-  $option = 'wp-wodify-api-cache-programs';
-  update_option( json_encode( $option ), $result );
+  $option = '_wp_wodify_api_cache_programs';
+  update_option( $option , $result , false );
 }
 
 /**
@@ -192,7 +223,8 @@ function _wp_wodify_api_sync_form ( $name ) {
   echo '<form action="' . admin_url( 'admin-post.php' ) . '">
     <input type="hidden" name="action" value="wp_wodify_' . $name . '_sync">'
   ;
-    submit_button( 'Synchronize ' . $name );
+
+  submit_button( 'Synchronize ' . $name );
 
   echo '</form>'
   ;
@@ -207,8 +239,25 @@ add_action( 'admin_post_wp_wodify_programs_sync',  'wp_wodify_get_api_programs' 
 
 
 
-  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-classes' );
-  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-coaches' );
-  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-locations' );
-  // register_setting( 'wp-wodify-settings-cache', 'wp-wodify-api-cache-programs' );
 
+
+
+
+
+
+
+
+function _wp_wodify_admin_template_api_cache_coach ( $record ) {
+  echo '<h3>' , $record->Name , '</h3>';
+}
+
+function _wp_wodify_admin_template_api_cache_program ( $record ) {
+  echo '<h3>', $record->Name, '</h3>';
+  echo '<p>', $record->Description, '</p>';
+}
+
+function _wp_wodify_admin_template_api_cache_location ( $record ) {
+  echo '<pre>';
+  print_r($record);
+  echo '</pre>';
+}
