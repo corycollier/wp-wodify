@@ -35,7 +35,7 @@
     </copy>
   </target>
 
-  <target name="copy-src">
+  <target name="copy-src" description="copies all of the src directory items into the build folder">
 
     <copy todir="${basedir}/build/html/wp-content/plugins/wp-wodify">
       <fileset dir="${basedir}/src">

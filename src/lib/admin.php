@@ -38,10 +38,16 @@ function wp_wodify_admin_options ( ) {
     , '</div>'
   ;
 
+  echo '<div class="wrap">'
+    , '<h2>API Synchronize</h2>'
+    , '<p>Use the buttons below to synchronize various parts of the Wodify API</p>'
+  ;
+
   _wp_wodify_api_sync_form( 'classes' );
   _wp_wodify_api_sync_form( 'coaches' );
   _wp_wodify_api_sync_form( 'locations' );
   _wp_wodify_api_sync_form( 'programs' );
+  echo '</div>';
 
 }
 
@@ -183,15 +189,12 @@ function wp_wodify_get_api_programs ( ) {
  */
 function _wp_wodify_api_sync_form ( $name ) {
 
-  echo '<div class="wrap">
-    <h3>' . ucfirst($name) . ' Sync</h3>
-    <form action="' . admin_url( 'admin-post.php' ) . '">
+  echo '<form action="' . admin_url( 'admin-post.php' ) . '">
     <input type="hidden" name="action" value="wp_wodify_' . $name . '_sync">'
-  ; 
-    submit_button( 'Synchronize' );
+  ;
+    submit_button( 'Synchronize ' . $name );
 
-  echo '</div>
-    </form>'
+  echo '</form>'
   ;
 }
 
