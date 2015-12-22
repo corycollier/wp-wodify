@@ -11,9 +11,9 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "src/wp-content/themes/NaturesTable/css"
+css_dir = "css"
 sass_dir = "sass"
-images_dir = "src/wp-content/themes/NaturesTable/images"
+images_dir = "img"
 
 # You can select your preferred output style here (can be overridden via the command line) :nested or :expanded or :compact or :compressed:
 output_style = :compact
