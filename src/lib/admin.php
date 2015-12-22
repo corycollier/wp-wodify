@@ -49,6 +49,14 @@ function wp_wodify_admin_options ( ) {
   _wp_wodify_api_sync_form( 'programs' );
   echo '</div>';
 
+
+  echo '<div class="wrap"'
+    ,  '<h2>Post Type Creation</h2>'
+    , '<p>Create Wordpress post types, to match what comes from Wodify</p>'
+  ;
+  _wp_wodify_api_sync_form('create_post_type_coach');
+  echo '</div>';
+
   _wp_wodify_admin_display_api_cache( 'coach', 'coaches' );
   _wp_wodify_admin_display_api_cache( 'location', 'locations' );
   _wp_wodify_admin_display_api_cache( 'program', 'programs' );
@@ -236,8 +244,13 @@ add_action( 'admin_post_wp_wodify_locations_sync', 'wp_wodify_get_api_locations'
 add_action( 'admin_post_wp_wodify_programs_sync',  'wp_wodify_get_api_programs' );
 
 
+add_action( 'admin_post_wp_wodify_create_post_type_coach_sync',  'wp_wodify_admin_create_post_type_coach' );
 
 
+
+function wp_wodify_admin_create_post_type_coach ( ) {
+  wp_wodify_posts_register_post_type_coach();
+}
 
 
 
@@ -258,6 +271,6 @@ function _wp_wodify_admin_template_api_cache_program ( $record ) {
 
 function _wp_wodify_admin_template_api_cache_location ( $record ) {
   echo '<pre>';
-  print_r($record);
+  var_dump($record);
   echo '</pre>';
 }

@@ -4,10 +4,10 @@ cache.properties
 composer.lock
 
 # folders
-build/html/
-build/logs/
-build/coverage/
-build/api
 .sass-cache/
 vendor/
 wordpress/
+build/*
+!build/phpunit.xml
+!build/phpmd.xml
+!build/phpdox.xml

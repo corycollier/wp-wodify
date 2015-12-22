@@ -56,7 +56,6 @@ function wp_wodify_posts_register_post_type_location ( ) {
 }
 
 
-
 /**
  * sets up all of the taxonomies for this plugin
  */
@@ -87,15 +86,3 @@ function wp_wodify_posts_register_taxonomy ( ) {
   ));
 
 }
-
-add_action( 'wp_wodify_create_post_type_coach', 'wp_wodify_posts_register_post_type_coach' );
-add_action( 'wp_wodify_create_post_type_location', 'wp_wodify_posts_register_post_type_location' );
-
-    // 'classes'      => 'http://app.wodify.com/API/Classes_v1.aspx',
-    // 'coaches'      => 'http://app.wodify.com/API/Coaches_v1.aspx',
-    // 'leaderboards' => 'http://app.wodify.com/API/Leaderboard_v1.aspx',
-    // 'results'      => 'http://app.wodify.com/API/LeaderboardResults_v1.aspx',
-    // 'locations'    => 'http://app.wodify.com/API/Locations_v1.aspx',
-    // 'programs'     => 'http://app.wodify.com/API/Programs_v1.aspx',
-    // 'whitebaord'   => 'http://app.wodify.com/API/Whiteboard_v1.aspx',
-    //

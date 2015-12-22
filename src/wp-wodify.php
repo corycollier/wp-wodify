@@ -35,6 +35,7 @@ THE SOFTWARE.
 */
 
 require_once 'lib/install.php';
+require_once 'lib/posts.php';
 require_once 'lib/admin.php';
 
 // register the activation / deactivation hooks

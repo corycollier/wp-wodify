@@ -3,20 +3,38 @@
   "description"       : "A plugin to allow Wordpress integration with Wodify",
   "prefer-stable"     : false,
   "minimum-stability" : "dev",
-  "require"           : {
-    "johnpbloch/wordpress" : "^4.3"
+  "homepage"          : "http://corycollier.github.io/wp-wodify",
+  "type"              : "wordpress-plugin",
+  "license"           : "MIT",
+
+  "require" : {
+    "php" : ">=5.3.2"
   },
+
   "require-dev" : {
-    "phpunit/phpunit"           : "^4.7",
-    "phpunit/php-code-coverage" : "^2.1",
+    "composer/installers"       : "^1.0@dev",
     "phploc/phploc"             : "^2.1",
-    "zerkalica/phpcs"           : "dev-master"
+    "pdepend/pdepend"           : "^2.2",
+    "phpmd/phpmd"               : "^2.3",
+    "squizlabs/php_codesniffer" : "^2.5",
+    "sebastian/phpcpd"          : "^2.0",
+    "phpunit/phpunit"           : "^5.1",
+    "johnpbloch/wordpress"      : "^4.3",
+    "theseer/phpdox"            : "0.8.1.1"
   },
-  "license" : "MIT",
+
   "authors" : [
     {
-      "name"  : "Cory Collier",
-      "email" : "corycollier@corycollier.com"
+      "name"     : "Cory Collier",
+      "email"    : "corycollier@corycollier.com",
+      "role"     : "developer",
+      "homepage" : "http://corycollier.com/"
     }
-  ]
+  ],
+
+  "extra" : {
+    "installer-paths" : {
+      "src/" : ["type:wordpress-plugin"]
+    }
+  }
 }
