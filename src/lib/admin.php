@@ -3,7 +3,7 @@
 /**
  * function add the wodify menu to the admin menus
  */
-function wp_wodify_admin_menu ( ) {
+function wp_wodify_admin_menu() {
   add_options_page(
     'WP Wodify Options',
     'WP Wodify',
@@ -16,9 +16,9 @@ function wp_wodify_admin_menu ( ) {
 /**
  * Function to display the wp-wodify admin options
  */
-function wp_wodify_admin_options ( ) {
+function wp_wodify_admin_options() {
 
-  if ( !current_user_can( 'manage_options' ) )  {
+  if ( !current_user_can( 'manage_options' ) ) {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
 
@@ -133,7 +133,7 @@ function wp_wodify_admin_section_callback ( ) {
  */
 function wp_wodify_admin_api_key_field_callback ( ) {
   $setting = esc_attr( get_option( 'wp-wodify-api-key' ) );
-  echo '<input type="text" name="wp-wodify-api-key" value="' . $setting . '" />';
+  echo '<input type="text" name="wp-wodify-api-key" value="' . esc_attr( $setting ) . '" />';
 }
 
 /**
@@ -147,22 +147,11 @@ function wp_wodify_api_request ( $api_name, $params = array() ) {
   $data = array_merge($params, array(
     'apikey'   => $api_key,
     'type'     => 'json',
-    'encoding' => 'utf-8'
+    'encoding' => 'utf-8',
   ));
 
   $uri = _wp_wodify_get_api_uri( $api_name );
-
-  $ch = curl_init();
-
-  $url = sprintf('%s?%s', $uri, http_build_query($data));
-
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HEADER, false);
-  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-
-  $result = curl_exec($ch);
-
+  $result = wp_remote_get( sprintf('%s?%s', $uri, http_build_query($data) ) );
   return $result;
 }
 
@@ -228,8 +217,8 @@ function wp_wodify_get_api_programs ( ) {
  */
 function _wp_wodify_api_sync_form ( $name ) {
 
-  echo '<form action="' . admin_url( 'admin-post.php' ) . '">
-    <input type="hidden" name="action" value="wp_wodify_' . $name . '_sync">'
+  echo '<form action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">
+    <input type="hidden" name="action" value="wp_wodify_' . esc_attr( $name ) . '_sync">'
   ;
 
   submit_button( 'Synchronize ' . $name );
@@ -271,6 +260,6 @@ function _wp_wodify_admin_template_api_cache_program ( $record ) {
 
 function _wp_wodify_admin_template_api_cache_location ( $record ) {
   echo '<pre>';
-  var_dump($record);
+  // print_r($record);
   echo '</pre>';
 }

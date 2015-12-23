@@ -20,7 +20,10 @@
     "sebastian/phpcpd"          : "^2.0",
     "phpunit/phpunit"           : "^5.1",
     "johnpbloch/wordpress"      : "^4.3",
-    "theseer/phpdox"            : "0.8.1.1"
+    "theseer/phpdox"            : "0.8.1.1",
+    "satooshi/php-coveralls"    : "^0.7.1",
+    "antecedent/patchwork": "^1.3",
+    "wp-coding-standards/wpcs": "2014-12-11"
   },
 
   "authors" : [
@@ -35,6 +38,7 @@
   "extra" : {
     "installer-paths" : {
       "src/" : ["type:wordpress-plugin"]
-    }
+    },
+    "wordpress-install-dir": "build/html/"
   }
 }
