@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: WP Wodify
-Plugin URI:  http://corycollier.com/wp-wodify
+Plugin URI:  https://github.com/corycollier/wp-wodify
 Description: Plugin to integrate Wodify with Wordpress
 Version:     1.0
-Author:      Cory Collie
+Author:      Cory Collier
 Author URI:  http://corycollier.com
 License:     MIT
 License URI: http://opensource.org/licenses/MIT
@@ -44,4 +44,4 @@ register_deactivation_hook( __FILE__, 'wp_wodify_uninstall' );
 
 // add the menu for the admin page
 add_action( 'admin_menu', 'wp_wodify_admin_menu' );
-add_action( 'admin_init', 'wp_wodify_admin_register_settings' );
+add_action( 'admin_init', 'wp_wodify_admin_init' );

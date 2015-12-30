@@ -19,7 +19,7 @@
     "squizlabs/php_codesniffer" : "^2.5",
     "sebastian/phpcpd"          : "^2.0",
     "phpunit/phpunit"           : "^5.1",
-    "johnpbloch/wordpress"      : "^4.3",
+    "johnpbloch/wordpress"      : "^4.4",
     "theseer/phpdox"            : "0.8.1.1",
     "satooshi/php-coveralls"    : "^0.7.1",
     "antecedent/patchwork": "^1.3",
@@ -40,5 +40,9 @@
       "src/" : ["type:wordpress-plugin"]
     },
     "wordpress-install-dir": "build/html/"
+  },
+
+  "autoload": {
+    "psr-4": { "WpWodify\\": "src/" }
   }
 }

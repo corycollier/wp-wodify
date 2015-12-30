@@ -308,4 +308,16 @@
       javafiles="no"
       />
   </target>
+
+  <target name="copy-to-html" depends="conform-to-wp-coding-standards">
+    <!-- Wordpress itself -->
+    <copy todir="${basedir}/build/html/wp-content/plugins/wp-wodify">
+      <fileset dir="${basedir}/build/dist/" >
+        <exclude name="**/config.rb" />
+        <exclude name="**/.sass-cache" />
+        <exclude name="**/sass/" />
+      </fileset>
+    </copy>
+  </target>
+
 </project>

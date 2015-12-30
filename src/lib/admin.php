@@ -22,45 +22,46 @@ function wp_wodify_admin_options() {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
 
-  wp_wodify_admin_init() ;
+  wp_wodify_admin_init();
 
-  echo '<div class="wrap">'
-    , '<h2>WP Wodify Settings</h2>'
-    , '<p>Change and update settings for Wodify integration here</p>'
-    , '<form action="options.php" method="POST">'
-  ;
+  echo '<div class="wrap">
+    <h2>WP Wodify Settings</h2>
+    <p>Change and update settings for Wodify integration here</p>
+    <form action="options.php" method="POST">
+  ';
 
   settings_fields( 'wp-wodify-settings-group' );
   do_settings_sections( 'wp-wodify-administer' );
-  submit_button();
 
-  echo '</form>'
-    , '</div>'
-  ;
+  echo get_submit_button();
+  echo '</form>
+    </div>
+  ';
 
-  echo '<div class="wrap">'
-    , '<h2>API Synchronize</h2>'
-    , '<p>Use the buttons below to synchronize various parts of the Wodify API</p>'
-  ;
+  echo '<div class="wrap">
+    <h2>API Synchronize</h2>
+    <p>Use the buttons below to synchronize various parts of the Wodify API</p>
+  ';
 
-  _wp_wodify_api_sync_form( 'classes' );
-  _wp_wodify_api_sync_form( 'coaches' );
-  _wp_wodify_api_sync_form( 'locations' );
-  _wp_wodify_api_sync_form( 'programs' );
+  echo _wp_wodify_api_sync_form( 'classes' );
+  echo _wp_wodify_api_sync_form( 'coaches' );
+  echo _wp_wodify_api_sync_form( 'locations' );
+  echo _wp_wodify_api_sync_form( 'programs' );
   echo '</div>';
 
 
-  echo '<div class="wrap"'
-    ,  '<h2>Post Type Creation</h2>'
-    , '<p>Create Wordpress post types, to match what comes from Wodify</p>'
-  ;
-  _wp_wodify_api_sync_form('create_post_type_coach');
+  echo '<div class="wrap">
+    <h2>Post Type Creation</h2>
+    <p>Create Wordpress post types, to match what comes from Wodify</p>
+  ';
+
+  echo _wp_wodify_api_sync_form( 'create_post_type_coach' );
   echo '</div>';
 
-  _wp_wodify_admin_display_api_cache( 'coach', 'coaches' );
-  _wp_wodify_admin_display_api_cache( 'location', 'locations' );
-  _wp_wodify_admin_display_api_cache( 'program', 'programs' );
-  // _wp_wodify_admin_display_api_cache( 'class', 'classes' );
+  echo _wp_wodify_admin_display_api_cache( 'coach', 'coaches' );
+  echo _wp_wodify_admin_display_api_cache( 'location', 'locations' );
+  echo _wp_wodify_admin_display_api_cache( 'program', 'programs' );
+  echo _wp_wodify_admin_display_api_cache( 'class', 'classes' );
 
   echo '</div>';
 
@@ -73,20 +74,23 @@ function wp_wodify_admin_options() {
  * @param string $plural the pluralized version of the name
  */
 function _wp_wodify_admin_display_api_cache ( $name, $plural ) {
+
   $proper_plural = ucfirst( $plural );
   $proper_single = ucfirst( $name );
-  echo '<div class="wrap"><h2>', $proper_plural, '</h2>';
-
-  $option = get_option( '_wp_wodify_api_cache_' . $plural );
-  $values = json_decode( $option )->RecordList->{$proper_single};
-
-  $func = '_wp_wodify_admin_template_api_cache_' . $name;
+  $func          = '_wp_wodify_admin_template_api_cache_' . $name;
+  $option        = get_option( '_wp_wodify_api_cache_' . $plural );
+  $values        = json_decode( $option )->RecordList->{$proper_single};
+  $template      = '<div class="wrap"><h2>!title</h2>!cache</div>';
+  $cache         = '';
 
   foreach ($values as $value) {
-    call_user_func( $func, $value );
+    $cache .= call_user_func( $func, $value );
   }
 
-  echo '</div>';
+  return strtr($template, array(
+    '!title' => $proper_plural,
+    '!cache' => $cache,
+  ));
 }
 
 
@@ -106,6 +110,7 @@ function wp_wodify_admin_register_settings ( ) {
  * Function to register the settings with the settings api
  */
 function wp_wodify_admin_init ( ) {
+  wp_wodify_admin_register_settings();
   add_settings_section( 'section-one'
     , 'Section One'
     , 'wp_wodify_admin_section_callback'
@@ -118,6 +123,13 @@ function wp_wodify_admin_init ( ) {
     , 'wp-wodify-administer'
     , 'section-one'
   );
+
+  $types = array('coaches', 'classes', 'locations', 'programs');
+  foreach ($types as $type) {
+    add_action( 'admin_post_wp_wodify_' . $type . '_sync',   'wp_wodify_get_api_' . $type );
+  }
+
+  add_action( 'admin_enqueue_scripts', 'wp_wodify_admin_scripts' );
 }
 
 /**
@@ -132,7 +144,7 @@ function wp_wodify_admin_section_callback ( ) {
  * function to output the api key input element on the admin page
  */
 function wp_wodify_admin_api_key_field_callback ( ) {
-  $setting = esc_attr( get_option( 'wp-wodify-api-key' ) );
+  $setting = get_option( 'wp-wodify-api-key' );
   echo '<input type="text" name="wp-wodify-api-key" value="' . esc_attr( $setting ) . '" />';
 }
 
@@ -143,14 +155,14 @@ function wp_wodify_admin_api_key_field_callback ( ) {
  * @return Object the resulting json object
  */
 function wp_wodify_api_request ( $api_name, $params = array() ) {
-  $api_key = esc_attr( get_option( 'wp-wodify-api-key' ) );
-  $data = array_merge($params, array(
-    'apikey'   => $api_key,
+  $api_key = get_option( 'wp-wodify-api-key' );
+  $uri     = _wp_wodify_get_api_uri( $api_name );
+  $data    = array_merge($params, array(
+    'apikey'   => esc_attr( $api_key ),
     'type'     => 'json',
     'encoding' => 'utf-8',
   ));
 
-  $uri = _wp_wodify_get_api_uri( $api_name );
   $result = wp_remote_get( sprintf('%s?%s', $uri, http_build_query($data) ) );
   return $result;
 }
@@ -175,39 +187,43 @@ function _wp_wodify_get_api_uri ($name = 'programs') {
 }
 
 /**
+ * Gets data from the api.
+ * @param  string $name the name of the data to retrieve
+ * @return boolean true if successful, false if not
+ */
+function wp_wodify_get_api_data ( $name ) {
+  $result = wp_wodify_api_request( $name );
+  $option = '_wp_wodify_api_cache_' . $name;
+  update_option( $option , $result , false );
+  return true;
+}
+
+/**
  * Gets the coaches from the Wodify API
  */
 function wp_wodify_get_api_coaches ( ) {
-  $result = wp_wodify_api_request('coaches');
-  $option = '_wp_wodify_api_cache_coaches';
-  update_option( $option , $result , false );
+  return wp_wodify_get_api_data( 'coaches' );
 }
 
 /**
  * Gets the classes from the Wodify API
  */
 function wp_wodify_get_api_classes ( ) {
-  $result = wp_wodify_api_request('classes');
-  $option = '_wp_wodify_api_cache_classes';
-  update_option( $option , $result , false );
+  return wp_wodify_get_api_data( 'classes' );
 }
 
 /**
  * Gets the locations from the Wodify API
  */
 function wp_wodify_get_api_locations ( ) {
-  $result = wp_wodify_api_request('locations');
-  $option = '_wp_wodify_api_cache_locations';
-  update_option( $option , $result , false );
+  return wp_wodify_get_api_data( 'locations' );
 }
 
 /**
  * Gets the programs from the Wodify API
  */
 function wp_wodify_get_api_programs ( ) {
-  $result = wp_wodify_api_request('programs');
-  $option = '_wp_wodify_api_cache_programs';
-  update_option( $option , $result , false );
+  return wp_wodify_get_api_data( 'programs' );
 }
 
 /**
@@ -217,23 +233,34 @@ function wp_wodify_get_api_programs ( ) {
  */
 function _wp_wodify_api_sync_form ( $name ) {
 
-  echo '<form action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">
-    <input type="hidden" name="action" value="wp_wodify_' . esc_attr( $name ) . '_sync">'
-  ;
+  $action = admin_url( 'admin-post.php' );
+  $template = '<form action="!action">
+    <input type="hidden" name="action" value="wp_wodify_!name_sync">
+    !submit
+    </form>';
 
-  submit_button( 'Synchronize ' . $name );
-
-  echo '</form>'
-  ;
+  return strtr($template, array(
+    '!action' => esc_attr( $action ),
+    '!name'   => esc_attr( $name ),
+    '!submit' => get_submit_button( 'Synchronize ' . $name ),
+  ));
 }
 
-add_action( 'admin_post_wp_wodify_coaches_sync',   'wp_wodify_get_api_coaches' );
-add_action( 'admin_post_wp_wodify_classes_sync',   'wp_wodify_get_api_classes' );
-add_action( 'admin_post_wp_wodify_locations_sync', 'wp_wodify_get_api_locations' );
-add_action( 'admin_post_wp_wodify_programs_sync',  'wp_wodify_get_api_programs' );
+/**
+ * Function to enqueue the admin javascript.
+ *
+ * @return bool true.
+ */
+function wp_wodify_admin_scripts() {
+  $plugin_url = plugin_dir_url( __FILE__ ) . '../';
+  wp_enqueue_script( 'wp_wodify_admin', $plugin_url . '/js/admin.js' );
+  return true;
+}
 
-
-add_action( 'admin_post_wp_wodify_create_post_type_coach_sync',  'wp_wodify_admin_create_post_type_coach' );
+// add_action( 'admin_post_wp_wodify_classes_sync',   'wp_wodify_get_api_classes' );
+// add_action( 'admin_post_wp_wodify_locations_sync', 'wp_wodify_get_api_locations' );
+// add_action( 'admin_post_wp_wodify_programs_sync',  'wp_wodify_get_api_programs' );
+// add_action( 'admin_post_wp_wodify_create_post_type_coach_sync',  'wp_wodify_admin_create_post_type_coach' );
 
 
 
@@ -248,18 +275,19 @@ function wp_wodify_admin_create_post_type_coach ( ) {
 
 
 
-
 function _wp_wodify_admin_template_api_cache_coach ( $record ) {
-  echo '<h3>' , $record->Name , '</h3>';
+  return '<h3>' . $record->Name . '</h3>';
 }
 
 function _wp_wodify_admin_template_api_cache_program ( $record ) {
-  echo '<h3>', $record->Name, '</h3>';
-  echo '<p>', $record->Description, '</p>';
+  $template = '<h3>!name</h3><p>!desc</p>';
+
+  return strtr($template, array(
+    '!name' => $record->Name,
+    '!desc' => $record->Description,
+  ));
 }
 
 function _wp_wodify_admin_template_api_cache_location ( $record ) {
-  echo '<pre>';
-  // print_r($record);
-  echo '</pre>';
+  return '<pre>' . print_r($record, true) . '</pre>';
 }

@@ -55,7 +55,6 @@ function wp_wodify_posts_register_post_type_location ( ) {
   );
 }
 
-
 /**
  * sets up all of the taxonomies for this plugin
  */
