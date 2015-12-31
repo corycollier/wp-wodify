@@ -22,24 +22,24 @@
     <h2>API Synchronize</h2>
     <p>Use the buttons below to synchronize various parts of the Wodify API</p>
 
-    <form action="<?php echo admin_url( 'admin-post.php' ); ?>">
+    <form action="<?php echo esc_attr( admin_url( 'admin-post.php' ) ); ?>">
         <input type="hidden" name="action" value="wp_wodify_classes_sync">
-        <?php get_submit_button( 'Synchronize Classes' ); ?>
+        <?php submit_button( 'Synchronize Classes' ); ?>
     </form>
 
-    <form action="<?php echo admin_url( 'admin-post.php' ); ?>">
+    <form action="<?php echo esc_attr( admin_url( 'admin-post.php' ) ); ?>">
         <input type="hidden" name="action" value="wp_wodify_coaches_sync">
-        <?php get_submit_button( 'Synchronize Coaches' ); ?>
+        <?php submit_button( 'Synchronize Coaches' ); ?>
     </form>
 
-    <form action="<?php echo admin_url( 'admin-post.php' ); ?>">
+    <form action="<?php echo esc_attr( admin_url( 'admin-post.php' ) ); ?>">
         <input type="hidden" name="action" value="wp_wodify_locations_sync">
-        <?php get_submit_button( 'Synchronize Locations' ); ?>
+        <?php submit_button( 'Synchronize Locations' ); ?>
     </form>
 
-    <form action="<?php echo admin_url( 'admin-post.php' ); ?>">
+    <form action="<?php echo esc_attr( admin_url( 'admin-post.php' ) ); ?>">
         <input type="hidden" name="action" value="wp_wodify_programs_sync">
-        <?php get_submit_button( 'Synchronize Programs' ); ?>
+        <?php submit_button( 'Synchronize Programs' ); ?>
     </form>
 
 </div>

@@ -3,7 +3,7 @@
 Plugin Name: WP Wodify
 Plugin URI:  https://github.com/corycollier/wp-wodify
 Description: Plugin to integrate Wodify with Wordpress
-Version:     1.0
+Version:     1.0.0
 Author:      Cory Collier
 Author URI:  http://corycollier.com
 License:     MIT
@@ -34,14 +34,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-require_once 'lib/install.php';
-require_once 'lib/posts.php';
-require_once 'lib/admin.php';
+// require_once 'lib/install.php';
+// require_once 'lib/posts.php';
+// require_once 'lib/admin.php';
 
-// register the activation / deactivation hooks
-register_activation_hook( __FILE__, 'wp_wodify_install' );
-register_deactivation_hook( __FILE__, 'wp_wodify_uninstall' );
+// // register the activation / deactivation hooks
+// register_activation_hook( __FILE__, 'wp_wodify_install' );
+// register_deactivation_hook( __FILE__, 'wp_wodify_uninstall' );
 
 // add the menu for the admin page
-add_action( 'admin_menu', 'wp_wodify_admin_menu' );
-add_action( 'admin_init', 'wp_wodify_admin_init' );
+// add_action( 'admin_menu', 'wp_wodify_admin_menu' );
+// add_action( 'admin_init', 'wp_wodify_admin_init' );
+
+require_once 'lib/class-api.php';
+require_once 'lib/class-cache.php';
+require_once 'lib/class-data.php';
+require_once 'lib/class-exception.php';
+require_once 'lib/class-installer.php';
+require_once 'lib/class-loader.php';
+require_once 'lib/class-overlord.php';
+require_once 'lib/class-template.php';
+
+$overlord = WpWodify\Overlord::getInstance();
+$overlord->run();

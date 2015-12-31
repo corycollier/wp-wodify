@@ -46,7 +46,7 @@ class Loader {
      * @return WpWodify\Overlord Returns $this, for object-chaining.
      */
     public function add_action( $hook, $component, $callback ) {
-        $this->actions[] = $this->componentify( $hook, $component, $callback )
+        $this->actions[] = $this->componentify( $hook, $component, $callback );
         return $this;
     }
 

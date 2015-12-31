@@ -140,9 +140,9 @@ function wp_wodify_admin_section_callback ( ) {
 }
 
 
-/**
+*
  * function to output the api key input element on the admin page
- */
+
 function wp_wodify_admin_api_key_field_callback ( ) {
   $setting = get_option( 'wp-wodify-api-key' );
   echo '<input type="text" name="wp-wodify-api-key" value="' . esc_attr( $setting ) . '" />';
