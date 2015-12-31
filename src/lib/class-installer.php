@@ -27,7 +27,8 @@ class Installer {
      * @return [type] [description]
      */
     public function install() {
-
+        // really not needed here, but this is always a good housekeeping measure
+        flush_rewrite_rules();
     }
 
     /**
@@ -35,6 +36,11 @@ class Installer {
      * @return [type] [description]
      */
     public function uninstall() {
+        if (! defined('WP_UNINSTALL_PLUGIN')) {
+          return;
+        }
 
+        // really not needed here, but this is always a good housekeeping measure
+        flush_rewrite_rules();
     }
 }

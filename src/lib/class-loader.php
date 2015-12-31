@@ -76,7 +76,7 @@ class Loader {
     protected function componentify( $hook, $component, $callback ) {
         $result = array(
             'hook'          => $hook,
-            'function'      => array($component, $callback),
+            'function'      => array( $component, $callback ),
             'priority'      => 10,
             'accepted_args' => 1,
         );

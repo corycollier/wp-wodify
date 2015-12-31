@@ -273,21 +273,3 @@ function wp_wodify_admin_create_post_type_coach ( ) {
 
 
 
-
-
-function _wp_wodify_admin_template_api_cache_coach ( $record ) {
-  return '<h3>' . $record->Name . '</h3>';
-}
-
-function _wp_wodify_admin_template_api_cache_program ( $record ) {
-  $template = '<h3>!name</h3><p>!desc</p>';
-
-  return strtr($template, array(
-    '!name' => $record->Name,
-    '!desc' => $record->Description,
-  ));
-}
-
-function _wp_wodify_admin_template_api_cache_location ( $record ) {
-  return '<pre>' . print_r($record, true) . '</pre>';
-}

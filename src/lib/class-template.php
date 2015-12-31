@@ -43,7 +43,7 @@ class Template {
      *
      * @return WpWodify\Template Returns $this, for object-chaining.
      */
-    public function setTemplate( $name ) {
+    public function set_template( $name ) {
         $this->template = $name;
         return $this;
     }
@@ -53,7 +53,7 @@ class Template {
      *
      * @return string The name of the template var.
      */
-    public function getTemplate() {
+    public function get_template() {
         return $this->template;
     }
 
@@ -63,7 +63,7 @@ class Template {
      * @return WpWodify\Template Returns $this, for object-chaining.
      */
     public function render() {
-        $template = $this->getTemplate();
+        $template = $this->get_template();
         require plugin_dir_path( __FILE__ ) . $template;
         return $this;
     }
