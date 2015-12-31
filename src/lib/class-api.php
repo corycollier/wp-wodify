@@ -77,7 +77,8 @@ class Api {
      */
     public function get_api_uri( $name ) {
         $name = strtolower($name);
-        if (!array_key_exists( $name, $this->endpoints ) ) {
+        $endpoint_exists = array_key_exists( $name, $this->endpoints );
+        if ( false == $endpoint_exists ) {
             throw new Exception( sprintf(self::ERR_API_NOT_AVAILABLE, $name ) );
         }
         return $this->endpoints[ $name ];
