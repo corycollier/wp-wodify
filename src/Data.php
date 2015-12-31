@@ -45,7 +45,7 @@ class Data
      *
      * @return WpWodify\Data Returns $this for object-chaining.
      */
-    public function setApi(Api $api)
+    public function set_api(Api $api)
     {
         $this->api = $api;
         return $this;
@@ -56,7 +56,7 @@ class Data
      *
      * @return WpWodify\Api The Api instance associated with this.
      */
-    public function getApi()
+    public function get_api()
     {
         return $this->api;
     }
@@ -68,7 +68,7 @@ class Data
      *
      * @return WpWodify\Data Returns $this for object-chaining.
      */
-    public function setCache(Cache $cache)
+    public function set_cache(Cache $cache)
     {
         $this->cache = $cache;
         return $this;
@@ -79,7 +79,7 @@ class Data
      *
      * @return WpWodify\Cache The Cache instance associated with this.
      */
-    public function getCache()
+    public function get_cache()
     {
         return $this->cache;
     }
@@ -94,8 +94,8 @@ class Data
      */
     public function get($name, $params)
     {
-        $cache = $this->getCache();
-        $api = $this->getApi();
+        $cache = $this->get_cache();
+        $api = $this->get_api();
         $cacheId = $cache->createIdentifier(array_merge($params, array(
             'api_name' => $name,
         )));

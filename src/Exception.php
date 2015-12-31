@@ -20,6 +20,6 @@ namespace WpWodify;
  * @since       Class available since release 1.0.x
  * @author      Cory Collier <corycollier@corycollier.com>
  */
-class Exception extends \Exception
+class Exception extends \ErrorException
 {
 }

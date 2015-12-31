@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * Api Class
  *
@@ -31,7 +31,7 @@ class Api
      *
      * @var string
      */
-    protected $apiKey;
+    protected $api_key;
 
     /**
      * A list of endpoints available.
@@ -49,25 +49,25 @@ class Api
     );
 
     /**
-     * Getter for the apiKey attribute.
+     * Getter for the api_key attribute.
      *
      * @return string The API key.
      */
-    public function getApiKey()
+    public function get_api_key()
     {
-        return $this->apiKey;
+        return $this->api_key;
     }
 
     /**
-     * Setter for the apiKey attribute.
+     * Setter for the api_key attribute.
      *
-     * @param string $apiKey The value to set the apiKey to.
+     * @param string $api_key The value to set the api_key to.
      *
      * @return WpWodify\Api Returns $this for object-chaining.
      */
-    public function setApiKey($apiKey)
+    public function set_api_key($api_key)
     {
-        $this->apiKey = $apiKey;
+        $this->api_key = $api_key;
         return $this;
     }
 
@@ -78,13 +78,13 @@ class Api
      *
      * @return string The full uri for the api.
      */
-    public function getApiUri($name)
+    public function get_api_uri($name)
     {
         $name = strtolower($name);
         if (!array_key_exists( $name, $this->endpoints ) ) {
             throw new Exception( sprintf(self::ERR_API_NOT_AVAILABLE, $name ) );
         }
-        return $this->endpoints[$name];
+        return $this->endpoints[ $name ];
     }
 
     /**
@@ -97,10 +97,10 @@ class Api
      */
     public function get($apiName, $params)
     {
-        $apiKey = $this->getApiKey();
-        $uri = $this->getApiUri( $apiName );
+        $api_key = $this->get_api_key();
+        $uri = $this->get_api_uri( $apiName );
         $data    = array_merge( $params, array(
-            'apikey'   => esc_attr( $apiKey ),
+            'apikey'   => esc_attr( $api_key ),
             'type'     => 'json',
             'encoding' => 'utf-8',
         ));

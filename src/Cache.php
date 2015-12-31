@@ -56,7 +56,7 @@ class Cache
      *
      * @return string The identifier to match the parameters.
      */
-    public function createIdentifier($params)
+    public function create_identifier($params)
     {
         $result = '';
         $sep = '';
