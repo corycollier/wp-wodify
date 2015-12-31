@@ -22,8 +22,7 @@ namespace WpWodify;
  * @since       Class available since release 1.0.x
  * @author      Cory Collier <corycollier@corycollier.com>
  */
-class Cache
-{
+class Cache {
     /**
      * Setter for the cache.
      *
@@ -32,8 +31,7 @@ class Cache
      *
      * @return WpWodify\Cache Returns $this, for object-chaining.
      */
-    public function set($name, $data = null)
-    {
+    public function set( $name, $data = null ) {
         return $this;
     }
 
@@ -44,8 +42,7 @@ class Cache
      *
      * @return mixed The value for the cache.
      */
-    public function get($name)
-    {
+    public function get( $name ) {
         return false;
     }
 
@@ -56,11 +53,10 @@ class Cache
      *
      * @return string The identifier to match the parameters.
      */
-    public function create_identifier($params)
-    {
+    public function create_identifier( $params ) {
         $result = '';
         $sep = '';
-        foreach ($params as $key => $value) {
+        foreach ( $params as $key => $value ) {
             $result .= $sep . $key . '-' . $value;
             $sep = '-';
         }

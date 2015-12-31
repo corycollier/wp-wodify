@@ -1,10 +1,10 @@
 <?php
 /**
- * Exception Class
+ * Installer Class
  *
  * @category    PHP
  * @package     WpWodify
- * @subpackage  Exception
+ * @subpackage  Installer
  * @since       File available since release 1.0.x
  * @author      Cory Collier <corycollier@corycollier.com>
  */
@@ -12,13 +12,29 @@
 namespace WpWodify;
 
 /**
- * Exception Class
+ * Installer Class
  *
  * @category    PHP
  * @package     WpWodify
- * @subpackage  Exception
+ * @subpackage  Installer
  * @since       Class available since release 1.0.x
  * @author      Cory Collier <corycollier@corycollier.com>
  */
-class Exception extends \ErrorException {
+class Installer {
+
+    /**
+     * Installs the plugin
+     * @return [type] [description]
+     */
+    public function install() {
+
+    }
+
+    /**
+     * Uninstalls the plugin
+     * @return [type] [description]
+     */
+    public function uninstall() {
+
+    }
 }

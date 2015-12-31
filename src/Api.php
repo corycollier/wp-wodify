@@ -22,8 +22,7 @@ namespace WpWodify;
  * @since       Class available since release 1.0.x
  * @author      Cory Collier <corycollier@corycollier.com>
  */
-class Api
-{
+class Api {
     const ERR_API_NOT_AVAILABLE = 'The given api [%s], does not exist';
 
     /**
@@ -53,8 +52,7 @@ class Api
      *
      * @return string The API key.
      */
-    public function get_api_key()
-    {
+    public function get_api_key() {
         return $this->api_key;
     }
 
@@ -65,8 +63,7 @@ class Api
      *
      * @return WpWodify\Api Returns $this for object-chaining.
      */
-    public function set_api_key($api_key)
-    {
+    public function set_api_key( $api_key ) {
         $this->api_key = $api_key;
         return $this;
     }
@@ -78,8 +75,7 @@ class Api
      *
      * @return string The full uri for the api.
      */
-    public function get_api_uri($name)
-    {
+    public function get_api_uri( $name ) {
         $name = strtolower($name);
         if (!array_key_exists( $name, $this->endpoints ) ) {
             throw new Exception( sprintf(self::ERR_API_NOT_AVAILABLE, $name ) );
@@ -95,10 +91,9 @@ class Api
      *
      * @return string The result.
      */
-    public function get($apiName, $params)
-    {
+    public function get( $api_name, $params ) {
         $api_key = $this->get_api_key();
-        $uri = $this->get_api_uri( $apiName );
+        $uri     = $this->get_api_uri( $api_name );
         $data    = array_merge( $params, array(
             'apikey'   => esc_attr( $api_key ),
             'type'     => 'json',
