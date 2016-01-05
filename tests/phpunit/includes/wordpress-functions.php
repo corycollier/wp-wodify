@@ -20,3 +20,4 @@ function flush_rewrite_rules() {}
 function register_post_type ($post_type, $args = array() ) {}
 function register_taxonomy( $taxonomy, $object_type, $args = array() ) {}
 function wp_remote_get( $url, $args = array() ) {}
+function is_admin() {}

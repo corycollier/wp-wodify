@@ -27,11 +27,11 @@ class DataTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests WpWodify\Data::set
      */
-    public function testSetApi()
+    public function test_set_api()
     {
         $expected = new Api;
         $sut = new Data;
-        $result = $sut->setApi($expected);
+        $result = $sut->set_api($expected);
         $this->assertSame($sut, $result);
 
         $property = new \ReflectionProperty('\WpWodify\Data', 'api');
@@ -41,9 +41,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests WpWodify\Data::getApi
+     * Tests WpWodify\Data::get_api
      */
-    public function testGetApi()
+    public function test_get_api()
     {
         $expected = new Api;
         $sut = new Data;
@@ -51,18 +51,18 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $property = new \ReflectionProperty('\WpWodify\Data', 'api');
         $property->setAccessible(true);
         $property->setValue($sut, $expected);
-        $result = $sut->getApi();
+        $result = $sut->get_api();
         $this->assertSame($expected, $result);
     }
 
     /**
      * Tests WpWodify\Cache::set
      */
-    public function testSetCache()
+    public function test_set_cache()
     {
         $expected = new Cache;
         $sut = new Data;
-        $result = $sut->setCache($expected);
+        $result = $sut->set_cache($expected);
         $this->assertSame($sut, $result);
 
         $property = new \ReflectionProperty('\WpWodify\Data', 'cache');
@@ -72,9 +72,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests WpWodify\Data::getCache
+     * Tests WpWodify\Data::get_cache
      */
-    public function testGetCache()
+    public function test_get_cache()
     {
         $expected = new Cache;
         $sut = new Data;
@@ -82,24 +82,24 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $property = new \ReflectionProperty('\WpWodify\Data', 'cache');
         $property->setAccessible(true);
         $property->setValue($sut, $expected);
-        $result = $sut->getCache();
+        $result = $sut->get_cache();
         $this->assertSame($expected, $result);
     }
 
     /**
      * Tests WpWodify\Data::get.
      *
-     * @dataProvider provideGet
+     * @dataProvider provide_get
      */
-    public function testGet($expected, $name, $params = array(), $cache = false)
+    public function test_get($expected, $name, $params = array(), $cache = false)
     {
         $cacheId = 'cache-id';
         $sut = $this->getMockBuilder('\WpWodify\Data')
-            ->setMethods(array('getCache', 'getApi'))
+            ->setMethods(array('get_cache', 'get_api'))
             ->getMock();
 
         $cacheObject = $this->getMockBuilder('\WpWodify\Cache')
-            ->setMethods(array('get', 'set', 'createIdentifier'))
+            ->setMethods(array('get', 'set', 'create_identifier'))
             ->getMock();
 
         $api = $this->getMockBuilder('\WpWodify\Api')
@@ -118,7 +118,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
         }
 
         $cacheObject->expects($this->once())
-            ->method('createIdentifier')
+            ->method('create_identifier')
             ->with($this->equalTo(array_merge($params, array(
                 'api_name' => $name,
             ))))
@@ -130,11 +130,11 @@ class DataTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($cache));
 
         $sut->expects($this->once())
-            ->method('getCache')
+            ->method('get_cache')
             ->will($this->returnValue($cacheObject));
 
         $sut->expects($this->once())
-            ->method('getApi')
+            ->method('get_api')
             ->will($this->returnValue($api));
 
         $result = $sut->get($name, $params);
@@ -146,7 +146,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
      *
      * @return array An array of data to use for testing.
      */
-    public function provideGet()
+    public function provide_get()
     {
         return array(
             'cache has expected result' => array(

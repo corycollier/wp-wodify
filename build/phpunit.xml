@@ -15,7 +15,7 @@
   stopOnError="false"
   stopOnFailure="false"
   stopOnIncomplete="false"
-  bootstrap="../tests/bootstrap.php"
+  bootstrap="../tests/phpunit/bootstrap.php"
   stopOnSkipped="false"
   stopOnRisky="false"
   testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
@@ -26,7 +26,7 @@
 
   <testsuites>
     <testsuite name="All Unit Tests">
-      <directory>../tests/</directory>
+      <directory suffix="test.php" phpVersion="5.3.0" phpVersionOperator=">=">../tests/phpunit</directory>
     </testsuite>
   </testsuites>
 
@@ -35,13 +35,10 @@
       <directory>../src</directory>
       <exclude>
       </exclude>
-    </whitelist><filter>
-  </filter>
-
+    </whitelist>
   </filter>
 
   <logging>
-
     <log type="coverage-html"
         target="phpunit"
         charset="UTF-8"
@@ -49,10 +46,10 @@
         highlight="false"
         lowUpperBound="50"
         highLowerBound="80" />
-   <log type="coverage-clover" target="logs/clover.xml"/>
-   <log type="coverage-crap4j" target="logs/crap4j.xml"/>
-   <log type="coverage-xml" target="coverage"/>
-   <log type="junit" target="logs/junit.xml" logIncompleteSkipped="false"/>
+     <log type="coverage-clover" target="logs/clover.xml"/>
+     <log type="coverage-crap4j" target="logs/crap4j.xml"/>
+     <log type="coverage-xml" target="coverage"/>
+     <log type="junit" target="logs/junit.xml" logIncompleteSkipped="false"/>
   </logging>
 
 </phpunit>

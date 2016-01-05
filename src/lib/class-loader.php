@@ -51,6 +51,15 @@ class Loader {
     }
 
     /**
+     * Gets the actions,
+     *
+     * @return array The array of actions.
+     */
+    public function get_actions() {
+        return $this->actions;
+    }
+
+    /**
      * Adds an filter to the list of filters.
      *
      * @param string $hook The name of the hook to implement
@@ -62,6 +71,15 @@ class Loader {
     public function add_filter( $hook, $component, $callback ) {
         $this->actions[] = $this->componentify( $hook, $component, $callback );
         return $this;
+    }
+
+    /**
+     * Gets the filters,
+     *
+     * @return array The array of filters.
+     */
+    public function get_filters() {
+        return $this->filters;
     }
 
     /**

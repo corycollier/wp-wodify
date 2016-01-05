@@ -79,14 +79,14 @@ class CacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests WpWodify\Cache::createIdentifier.
+     * Tests WpWodify\Cache::create_identifier.
      *
-     * @dataProvider provideCreateIdentifier
+     * @dataProvider provide_create_identifier
      */
-    public function testCreateIdentifier($expected, $params)
+    public function test_create_identifier($expected, $params)
     {
         $sut = new Cache;
-        $result = $sut->createIdentifier($params);
+        $result = $sut->create_identifier($params);
         $this->assertEquals($expected, $result);
     }
 
@@ -95,7 +95,7 @@ class CacheTest extends \PHPUnit_Framework_TestCase
      *
      * @return array An array of data to use for testing.
      */
-    public function provideCreateIdentifier()
+    public function provide_create_identifier()
     {
         return array(
             array(

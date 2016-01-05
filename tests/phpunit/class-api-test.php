@@ -25,32 +25,32 @@ use WpWodify\Api as Api;
 class ApiTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Tests the WpWodify\Api::getApiKey method.
+     * Tests the WpWodify\Api::get_api_key method.
      */
-    public function testGetApiKey()
+    public function test_get_api_key()
     {
         $expected = 'the expected value';
         $sut = new Api;
 
-        $property = new \ReflectionProperty('\WpWodify\Api', 'apiKey');
+        $property = new \ReflectionProperty('\WpWodify\Api', 'api_key');
         $property->setAccessible(true);
         $property->setValue($sut, $expected);
 
-        $result = $sut->getApiKey();
+        $result = $sut->get_api_key();
         $this->assertEquals($expected, $result);
     }
 
     /**
-     * Tests the WpWodify\Api::setApiKey method.
+     * Tests the WpWodify\Api::set_api_key method.
      */
-    public function testSetApiKey()
+    public function test_set_api_key()
     {
         $expected = 'the expected value';
         $sut = new Api;
 
-        $sut->setApiKey($expected);
+        $sut->set_api_key($expected);
 
-        $property = new \ReflectionProperty('\WpWodify\Api', 'apiKey');
+        $property = new \ReflectionProperty('\WpWodify\Api', 'api_key');
         $property->setAccessible(true);
         $result = $property->getValue($sut);
 
@@ -58,26 +58,26 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests WpWodify\Api::getApiUri.
+     * Tests WpWodify\Api::get_api_uri.
      *
-     * @dataProvider provideGetApiUri
+     * @dataProvider provide_get_api_uri
      */
-    public function testGetApiUri($expected, $name, $exception = false)
+    public function test_get_api_uri($expected, $name, $exception = false)
     {
         if ($exception) {
             $this->setExpectedException('\WpWodify\Exception');
         }
         $sut = new Api;
-        $result = $sut->getApiUri($name);
+        $result = $sut->get_api_uri($name);
         $this->assertEquals($expected, $result);
     }
 
     /**
-     * Data provider for testGetApiUri.
+     * Data provider for test_get_api_uri.
      *
      * @return array An array of data to use for testing.
      */
-    public function provideGetApiUri()
+    public function provide_get_api_uri()
     {
         return array(
             array(
@@ -119,12 +119,12 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests WpWodify\Api::get
      *
-     * @dataProvider provideGet
+     * @dataProvider provide_get
      */
-    public function testGet($expected, $apiName, $params)
+    public function test_get($expected, $apiName, $params)
     {
         $sut = $this->getMockBuilder('\WpWodify\Api')
-            ->setMethods(array('getApiKey', 'getApiUri'))
+            ->setMethods(array('get_api_key', 'get_api_uri'))
             ->getMock();
 
         \Patchwork\replace('esc_attr', function($string) {
@@ -136,11 +136,11 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         });
 
         $sut->expects($this->once())
-            ->method('getApiKey')
+            ->method('get_api_key')
             ->will($this->returnValue(''));
 
         $sut->expects($this->once())
-            ->method('getApiUri')
+            ->method('get_api_uri')
             ->will($this->returnValue(''));
 
         $result = $sut->get($apiName, $params);
@@ -149,11 +149,11 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testGet.
+     * Data provider for test_get.
      *
      * @return array An array of data to use for testing.
      */
-    public function provideGet()
+    public function provide_get()
     {
         return array(
             array(

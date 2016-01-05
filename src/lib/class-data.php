@@ -91,7 +91,7 @@ class Data
     public function get( $name, $params ) {
         $cache = $this->get_cache();
         $api = $this->get_api();
-        $cacheId = $cache->createIdentifier(array_merge($params, array(
+        $cacheId = $cache->create_identifier(array_merge($params, array(
             'api_name' => $name,
         )));
 
