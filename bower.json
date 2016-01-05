@@ -1,0 +1,24 @@
+{
+  "name": "wp-wodify",
+  "homepage": "https://github.com/corycollier/wp-wodify",
+  "authors": [
+    "Cory Collier <corycollier@corycollier.com>"
+  ],
+  "description": "Documentation for the wp-wodify Wordpress plugin",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "wodify",
+    "wordpress",
+    "documentation"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
