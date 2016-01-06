@@ -8,12 +8,12 @@
   "license"           : "MIT",
 
   "require" : {
-    "php" : ">=5.3.2"
+    "php" : ">=5.3.2",
+    "phploc/phploc": "^2.1"
   },
 
   "require-dev" : {
     "composer/installers"       : "^1.0@dev",
-    "phploc/phploc"             : "^2.1",
     "pdepend/pdepend"           : "^2.2",
     "phpmd/phpmd"               : "^2.3",
     "squizlabs/php_codesniffer" : "^2.5",

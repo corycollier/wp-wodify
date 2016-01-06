@@ -50,7 +50,7 @@ class Overlord {
      *
      * @return WpWodify\Overloard Returns self::$instance
      */
-    public static function getInstance() {
+    public static function get_instance() {
         if (! self::$instance) {
             self::$instance = new self;
         }

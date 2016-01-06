@@ -69,7 +69,7 @@ class Loader {
      * @return WpWodify\Overlord Returns $this, for object-chaining.
      */
     public function add_filter( $hook, $component, $callback ) {
-        $this->actions[] = $this->componentify( $hook, $component, $callback );
+        $this->filters[] = $this->componentify( $hook, $component, $callback );
         return $this;
     }
 

@@ -34,6 +34,8 @@
     <whitelist processUncoveredFilesFromWhitelist="false">
       <directory>../src</directory>
       <exclude>
+        <directory suffix="template.php">../src</directory>
+        <file>../src/wp-wodify.php</file>
       </exclude>
     </whitelist>
   </filter>
