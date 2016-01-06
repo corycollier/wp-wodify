@@ -23,53 +23,53 @@ namespace WpWodify;
 class Template {
 
     /**
-     * A list of variables to store for the template.
+     * A list of variables to store for the script.
      *
      * @var array
      */
     protected $vars;
 
     /**
-     * The template to use for rendering.
+     * The script to use for rendering.
      *
      * @var string
      */
-    protected $template;
+    protected $script;
 
     /**
-     * Setter for the template var.
+     * Setter for the script var.
      *
-     * @param string $name The name of the template var.
+     * @param string $name The name of the script var.
      *
      * @return WpWodify\Template Returns $this, for object-chaining.
      */
-    public function set_template( $name ) {
-        $this->template = $name;
+    public function set_script( $name ) {
+        $this->script = $name;
         return $this;
     }
 
     /**
-     * Getter for the template var
+     * Getter for the script var
      *
-     * @return string The name of the template var.
+     * @return string The name of the script var.
      */
-    public function get_template() {
-        return $this->template;
+    public function get_script() {
+        return $this->script;
     }
 
     /**
-     * Run the template.
+     * Run the script.
      *
      * @return WpWodify\Template Returns $this, for object-chaining.
      */
     public function render() {
-        $template = $this->get_template();
-        require plugin_dir_path( __FILE__ ) . $template;
+        $script = $this->get_script();
+        require plugin_dir_path( __FILE__ ) . $script;
         return $this;
     }
 
     /**
-     * Assigns a variable to the vars attribute, for use in a template.
+     * Assigns a variable to the vars attribute, for use in a script.
      *
      * @param string $name  Name of the variable.
      * @param mixed $value Value of the variable.

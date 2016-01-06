@@ -109,11 +109,11 @@ class Overlord {
      * @return WpWodify\Overlord Returns $this, for object-chaining.
      */
     public function register_settings() {
-        register_setting( 'wp-wodify-settings-group', 'wp-wodify-api-key' );
-        register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_classes' );
-        register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_coaches' );
-        register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_locations' );
-        register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_programs' );
+        \register_setting( 'wp-wodify-settings-group', 'wp-wodify-api-key' );
+        \register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_classes' );
+        \register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_coaches' );
+        \register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_locations' );
+        \register_setting( 'wp-wodify-settings-cache', '_wp_wodify_api_cache_programs' );
 
         return $this;
     }
@@ -129,6 +129,21 @@ class Overlord {
         $this->register_settings();
 
         return $this;
+    }
+
+    /**
+     * Defines menu entries for the admin section
+     */
+    public function define_menu_hooks() {
+        $pages = new Pages;
+        $pages->set_template(new Template);
+        add_options_page(
+            'WP Wodify Options',
+            'WP Wodify',
+            'manage_options',
+            'wp-wodify-administer',
+            array($pages, 'admin_settings')
+        );
     }
 }
 

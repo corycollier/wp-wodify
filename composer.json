@@ -38,8 +38,7 @@
   "extra" : {
     "installer-paths" : {
       "src/" : ["type:wordpress-plugin"]
-    },
-    "wordpress-install-dir": "build/html/"
+    }
   },
 
   "autoload": {

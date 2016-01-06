@@ -1,5 +1,5 @@
 <phpdox xmlns="http://xml.phpdox.net/config">
- <project name="MVC Lite" source="../src" workdir="phpdox">
+ <project name="Wp-Wodify" source="../src" workdir="phpdox">
   <collector publiconly="false">
    <include mask="*.php" />
   </collector>

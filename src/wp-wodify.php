@@ -54,8 +54,10 @@ require_once 'lib/class-installer.php';
 require_once 'lib/class-loader.php';
 require_once 'lib/class-overlord.php';
 require_once 'lib/class-template.php';
+require_once 'lib/class-pages.php';
 
 $overlord = WpWodify\Overlord::get_instance();
 if ( PHP_SAPI !== 'cli' ) {
-  $overlord->run();
+  add_action('admin_init', array($overlord, 'run'));
+  add_action('admin_menu', array($overlord, 'define_menu_hooks'));
 }

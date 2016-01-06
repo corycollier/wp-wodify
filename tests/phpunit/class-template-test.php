@@ -23,28 +23,28 @@ namespace WpWodify;
 class TemplateTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Tests WpWodify\Template::set_template
+     * Tests WpWodify\Template::set_script
      *
-     * @dataProvider provide_set_template
+     * @dataProvider provide_set_script
      */
-    public function test_set_template($name)
+    public function test_set_script($name)
     {
         $sut = new Template;
-        $result = $sut->set_template($name);
+        $result = $sut->set_script($name);
         $this->assertEquals($sut, $result);
 
-        $property = new \ReflectionProperty('\WpWodify\Template', 'template');
+        $property = new \ReflectionProperty('\WpWodify\Template', 'script');
         $property->setAccessible(true);
         $result = $property->getValue($sut);
         $this->assertEquals($name, $result);
     }
 
     /**
-     * Data Provider for test_set_template.
+     * Data Provider for test_set_script.
      *
      * @return array An array of data to use for testing.
      */
-    public function provide_set_template()
+    public function provide_set_script()
     {
         return array(
             array(
@@ -54,26 +54,26 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests WpWodify\Template::get_template.
+     * Tests WpWodify\Template::get_script.
      *
-     * @dataProvider provide_get_template
+     * @dataProvider provide_get_script
      */
-    public function test_get_template($name)
+    public function test_get_script($name)
     {
         $sut = new Template;
-        $property = new \ReflectionProperty('\WpWodify\Template', 'template');
+        $property = new \ReflectionProperty('\WpWodify\Template', 'script');
         $property->setAccessible(true);
         $result = $property->setValue($sut, $name);
-        $result = $sut->get_template($name);
+        $result = $sut->get_script($name);
         $this->assertEquals($name, $result);
     }
 
     /**
-     * Data Provider for test_get_template.
+     * Data Provider for test_get_script.
      *
      * @return array An array of data to use for testing.
      */
-    public function provide_get_template()
+    public function provide_get_script()
     {
         return array(
             array(

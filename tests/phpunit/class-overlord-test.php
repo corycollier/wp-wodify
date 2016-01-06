@@ -117,11 +117,12 @@ class OverlordTest extends \PHPUnit_Framework_TestCase
     {
         $sut = $this->getMockBuilder('\WpWodify\Overlord')
             ->disableOriginalConstructor()
-            ->setMethods(['define_admin_hooks', 'define_public_hooks', 'register_settings'])
+            ->setMethods(['define_admin_hooks', 'define_public_hooks', 'register_settings', 'define_menu_hooks'])
             ->getMock();
 
         $sut->expects($this->once())->method('define_admin_hooks');
         $sut->expects($this->once())->method('define_public_hooks');
+        $sut->expects($this->once())->method('define_menu_hooks');
         $sut->expects($this->once())->method('register_settings');
 
         $result = $sut->run();
