@@ -42,7 +42,8 @@ class Overlord {
      * Privatizing the constructor, to enforce the singleton pattern
      */
     private function __construct() {
-
+        $loader = new Loader;
+        $this->set_loader($loader);
     }
 
     /**
@@ -85,9 +86,11 @@ class Overlord {
      */
     public function define_admin_hooks() {
         $is_admin = \is_admin();
+        $loader = $this->get_loader();
 
         if ( true == $is_admin ) {
-
+            $loader->add_action('admin_init', $this, 'register_settings');
+            $loader->add_action('admin_menu', $this, 'define_admin_menu_hooks');
         }
 
         return $this;
@@ -126,7 +129,8 @@ class Overlord {
     public function run() {
         $this->define_admin_hooks();
         $this->define_public_hooks();
-        $this->register_settings();
+        $loader = $this->get_loader();
+        $loader->run();
 
         return $this;
     }
@@ -134,10 +138,10 @@ class Overlord {
     /**
      * Defines menu entries for the admin section
      */
-    public function define_menu_hooks() {
+    public function define_admin_menu_hooks() {
         $pages = new Pages;
         $pages->set_template(new Template);
-        add_options_page(
+        \add_options_page(
             'WP Wodify Options',
             'WP Wodify',
             'manage_options',
@@ -146,11 +150,6 @@ class Overlord {
         );
     }
 }
-
-// add the menu for the admin page
-// add_action( 'admin_menu', 'wp_wodify_admin_menu' );
-// add_action( 'admin_init', 'wp_wodify_admin_init' );
-
 
 // INIT CODE
 
@@ -175,15 +174,3 @@ class Overlord {
 //   add_action( 'admin_enqueue_scripts', 'wp_wodify_admin_scripts' );
 // }
 //
-
-// MENU CODE
-//
-// function wp_wodify_admin_menu() {
-//   add_options_page(
-//     'WP Wodify Options',
-//     'WP Wodify',
-//     'manage_options',
-//     'wp-wodify-administer',
-//     'wp_wodify_admin_options'
-//   );
-// }

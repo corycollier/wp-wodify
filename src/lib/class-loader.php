@@ -27,14 +27,14 @@ class Loader {
      *
      * @var array
      */
-    protected $actions;
+    protected $actions = array();
 
     /**
      * A list of filters to add.
      *
      * @var array
      */
-    protected $filters;
+    protected $filters = array();
 
     /**
      * Adds an action to the list of actions.
@@ -99,6 +99,26 @@ class Loader {
             'accepted_args' => 1,
         );
         return $result;
+    }
+
+    /**
+     * Runs the loader.
+     *
+     * @return WpWodify\Loader Returns $this, for object-chaining.
+     */
+    public function run() {
+        $filters = $this->get_filters();
+        $actions = $this->get_actions();
+
+        foreach ($filters as $filter) {
+           \add_filter($filter['hook'], $filter['function']);
+        }
+
+        foreach ($actions as $action) {
+            \add_filter($action['hook'], $action['function']);
+        }
+
+        return $this;
     }
 
 }

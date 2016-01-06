@@ -123,6 +123,11 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * Data provider for test_componentify.
+     *
+     * @return array An array of data to use for testing.
+     */
     public function provide_componentify()
     {
         return array(
@@ -138,5 +143,37 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
                 'callback'  => 'callback',
             )
         );
+    }
+
+    /**
+     * Tests WpWodify\Loader::run
+     */
+    public function test_run()
+    {
+        $expected = array('stuff');
+        $actions = array(array('hook' => 'hook', 'function' => 'function'));
+        $filters = array(array('hook' => 'hook', 'function' => 'function'));
+        $sut = $this->getMockBuilder('\WpWodify\Loader')
+            ->disableOriginalConstructor()
+            ->setMethods(array('get_filters', 'get_actions'))
+            ->getMock();
+
+        $sut->expects($this->once())
+            ->method('get_filters')
+            ->will($this->returnValue($filters));
+
+        $sut->expects($this->once())
+            ->method('get_actions')
+            ->will($this->returnValue($actions));
+
+        \Patchwork\replace('add_action', function($arg1, $arg2) {
+
+        });
+
+        \Patchwork\replace('add_filter', function($arg1, $arg2) {
+
+        });
+
+        $sut->run();
     }
 }

@@ -58,7 +58,9 @@ class OverlordTest extends \PHPUnit_Framework_TestCase
     public function test_set_loader()
     {
         $sut = Overlord::get_instance();
-        $expected = 'expected object';
+        $expected = $this->getMockBuilder('\WpWodify\Loader')
+            ->setMethods(array('add_action'))
+            ->getMock();
         $result = $sut->set_loader($expected);
 
         $this->assertSame($sut, $result);
@@ -117,13 +119,20 @@ class OverlordTest extends \PHPUnit_Framework_TestCase
     {
         $sut = $this->getMockBuilder('\WpWodify\Overlord')
             ->disableOriginalConstructor()
-            ->setMethods(['define_admin_hooks', 'define_public_hooks', 'register_settings', 'define_menu_hooks'])
+            ->setMethods(array('define_admin_hooks', 'define_public_hooks', 'get_loader'))
             ->getMock();
+
+        $loader = $this->getMockBuilder('WpWodify\Loader')
+            ->setMethods(array('run'))
+            ->getMock();
+
+        $loader->expects($this->once())->method('run');
 
         $sut->expects($this->once())->method('define_admin_hooks');
         $sut->expects($this->once())->method('define_public_hooks');
-        $sut->expects($this->once())->method('define_menu_hooks');
-        $sut->expects($this->once())->method('register_settings');
+        $sut->expects($this->once())
+            ->method('get_loader')
+            ->will($this->returnValue($loader));
 
         $result = $sut->run();
         // $this->assertEquals($sut, $result);
