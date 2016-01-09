@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - WpWodify\Settings</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#WpWodify">WpWodify</a>
+          </li>
+          <li class="separator">Settings</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#coverage">Coverage</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/lib/class-settings.php.html#line23">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>WpWodify\</small>Settings</h1>
+        <h4>Settings Class</h4>
+        <p/>
+        <ul>
+          <li>Author: Cory Collier &lt;corycollier@corycollier.com&gt;</li>
+        </ul>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Settings
+            {<br/><ul class="none"><li>// members</li><li>protected  <a href="#members">$name</a>;
+                    </li><li>protected string <a href="#members">$prefix</a> =
+                        'wp-wodify-';
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/__construct.html">__construct</a>()
+                    </li><li>public Settings <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/add_section.html">add_section</a>()
+                    </li><li>public Settings <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/add_field.html">add_field</a>()
+                    </li><li>public Settings <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/register.html">register</a>()
+                    </li><li>protected string <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/humanize.html">humanize</a>()
+                    </li><li>protected string <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/machinify.html">machinify</a>()
+                    </li><li>protected string <a title="WpWodify\Settings" href="../classes/WpWodify_Settings/get_slug.html">get_slug</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="coverage">Coverage</h2>
+        <table class="styled">
+          <tr>
+            <td>Methods</td>
+            <td class="percent">100%</td>
+            <td class="nummeric">7 / 7</td>
+          </tr>
+          <tr>
+            <td>Lines</td>
+            <td class="percent">100%</td>
+            <td class="nummeric">28 / 28</td>
+          </tr>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="name"><strong>$name</strong>
+                —
+                string<br/><span class="indent">Stores the name of the section.</span></li>
+            <li id="prefix"><strong>$prefix</strong>
+                —
+                string<br/><span class="indent">Stores the plugin specific prefix for names in the settings.</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="get_slug"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/get_slug.html">get_slug()</a>
+                — Gets the slug for the settings section.</li>
+            <li id="humanize"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/humanize.html">humanize()</a>
+                — Takes a machine string, and makes it more human friendly.</li>
+            <li id="machinify"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/machinify.html">machinify()</a>
+                — Takes a human string, and makes it more machine friendly.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/__construct.html">__construct()</a>
+                — Constructor.</li>
+            <li id="add_field"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/add_field.html">add_field()</a>
+                — Adds a field to the settings section.</li>
+            <li id="add_section"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/add_section.html">add_section()</a>
+                — Adds a section to the settings instance.</li>
+            <li id="register"><a title="WpWodify\Settings" href="../classes/WpWodify_Settings/register.html">register()</a>
+                — Register's a setting.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-01-09T13:06:33-05:00 (commit #<span title="af9535bb3928a2a82a3517f42117cbb6240259f9">af9535b</span>)</h3>
+            <div>
+              <p>
+                        Author: Cory Collier (corycollier@corycollier.com) /
+                        Commiter: Cory Collier (corycollier@corycollier.com)
+                    </p>
+              <pre class="wrapped">PHPCS cleanup,
+Adding enqueue script hook implementations,
+Adding admin_settings page to the pages class, requiring new classes in the main plugin file,
+Stubbing out base Wordpress function definitions for unit testing,
+Adding fields class and associated unit test case,
+Adding settings class and associated unit test case.</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

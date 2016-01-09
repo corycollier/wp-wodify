@@ -13,7 +13,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
@@ -34,112 +36,108 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Wp-Wodify</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="api">Api Documetation</a>
-                    </li>
-                    <li>
-                        <a href="#">Reference Documentation</a>
-                    </li>
-                    <li>
-                        <a href="phpunit">Code Coverage</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="https://twitter.com/wp_wodify"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/corycollier/wp-wodify"><i class="fa fa-github"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Content -->
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h1>Wp-Wodify</h1>
-                <p class="lead">A wordpress plugin to integrate wodify</p>
-                <ul class="list-unstyled">
-                  <li><a class="zip_download_link" href="https://github.com/corycollier/wp-wodify/zipball/master">Download this project as a .zip file</a></li>
-                  <li><a class="tar_download_link" href="https://github.com/corycollier/wp-wodify/tarball/master">Download this project as a tar.gz file</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img alt="Wp-Wodify" src="img/logo-sm-dark.png" class="img img-responsive" /></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+              <a href="api">Api Documetation</a>
+          </li>
+          <li>
+              <a href="#">Reference Documentation</a>
+          </li>
+          <li>
+              <a href="phpunit">Code Coverage</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+              <a href="https://twitter.com/wp_wodify"><i class="fa fa-twitter"></i></a>
+          </li>
+          <li>
+              <a href="https://github.com/corycollier/wp-wodify"><i class="fa fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
+  </nav>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p class="copyright">Wp-Wodify maintained by <a href="https://github.com/corycollier">corycollier</a></p>
-          <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-        </div>
-        <div class="col-lg-12">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="https://travis-ci.org/corycollier/wp-wodify">
-                        <img src="https://travis-ci.org/corycollier/wp-wodify.svg?branch=release/1.0.0" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://coveralls.io/github/corycollier/wp-wodify?branch=release/1.0.0">
-                        <img src="https://coveralls.io/repos/corycollier/wp-wodify/badge.svg?branch=release/1.0.0&service=github" />
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/v/stable" /></a>
-                </li>
-
-                <li>
-                    <a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/downloads" /></a>
-                </li>
-
-                <li>
-                    <a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/v/unstable" /></a>
-                </li>
-
-                <li>
-                    <a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/license" /></a>
-                </li>
-            </ul>
-        </div>
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="text-hide"><img src="img/logo.png" />Wp-Wodify</h1>
+        <p class="lead">A <a href="http://wordpress.org">Wordpress</a> plugin to integrate
+          <a href="http://wodify.com">Wodify</a> into your website.
+        </p>
+        <ul class="list-unstyled">
+          <li><a class="fa fa-file-zip-o" href="https://github.com/corycollier/wp-wodify/zipball/master"> Download this project as a .zip file</a></li>
+          <li><a class="fa fa-file-archive-o" href="https://github.com/corycollier/wp-wodify/tarball/master"> Download this project as a tar.gz file</a></li>
+        </ul>
       </div>
     </div>
+    <!-- /.row -->
 
+  </div>
+  <!-- /.container -->
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="copyright">Wp-Wodify maintained by <a href="https://github.com/corycollier">corycollier</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        <p>
+          Hexagonal graphic by <a href="http://www.freepik.com/">Freepik</a>
+          from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under
+          <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>.
+          Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
+        </p>
+      </div>
+      <div class="col-lg-12">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="https://travis-ci.org/corycollier/wp-wodify">
+              <img src="https://travis-ci.org/corycollier/wp-wodify.svg?branch=release/1.0.0" />
+            </a>
+          </li>
+          <li>
+            <a href="https://coveralls.io/github/corycollier/wp-wodify?branch=release/1.0.0">
+              <img src="https://coveralls.io/repos/corycollier/wp-wodify/badge.svg?branch=release/1.0.0&service=github" />
+            </a>
+          </li>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+          <li><a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/v/stable" /></a></li>
+          <li><a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/downloads" /></a></li>
+          <li><a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/v/unstable" /></a></li>
+          <li><a href="#"><img src="https://poser.pugx.org/corycollier/wp-wodify/license" /></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery Version 1.11.1 -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
 
 </html>
+
 

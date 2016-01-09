@@ -78,13 +78,15 @@
             {<br/><ul class="none"><li>// members</li><li>protected static <span title="WpWodify\WpWodify\Overlord">Overlord</span> <a href="#members">$instance</a>;
                     </li><li>protected <span title="WpWodify\WpWodify\Loader">Loader</span> <a href="#members">$loader</a>;
                     </li></ul><ul class="none"><li>// methods</li><li>private void <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/__construct.html">__construct</a>()
-                    </li><li>public static Overloard <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/getInstance.html">getInstance</a>()
+                    </li><li>public static Overloard <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/get_instance.html">get_instance</a>()
                     </li><li>public Loader <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/get_loader.html">get_loader</a>()
                     </li><li>public Overlord <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/set_loader.html">set_loader</a>()
                     </li><li>public Overlord <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/define_admin_hooks.html">define_admin_hooks</a>()
                     </li><li>public Overlord <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/define_public_hooks.html">define_public_hooks</a>()
                     </li><li>public Overlord <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/register_settings.html">register_settings</a>()
                     </li><li>public Overlord <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/run.html">run</a>()
+                    </li><li>public void <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/define_admin_menu_hooks.html">define_admin_menu_hooks</a>()
+                    </li><li>public bool <a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/admin_enqueue_scripts.html">admin_enqueue_scripts</a>()
                     </li></ul>
 
             }<br/></div>
@@ -92,13 +94,13 @@
         <table class="styled">
           <tr>
             <td>Methods</td>
-            <td class="percent">0%</td>
-            <td class="nummeric">0 / 8</td>
+            <td class="percent">80%</td>
+            <td class="nummeric">8 / 10</td>
           </tr>
           <tr>
             <td>Lines</td>
-            <td class="percent">0%</td>
-            <td class="nummeric">0 / 23</td>
+            <td class="percent">69.77%</td>
+            <td class="nummeric">30 / 43</td>
           </tr>
         </table>
         <h2 id="members">Members</h2>
@@ -117,11 +119,15 @@
         <div class="styled">
           <h4>public</h4>
           <ul>
+            <li id="admin_enqueue_scripts"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/admin_enqueue_scripts.html">admin_enqueue_scripts()</a>
+                — Loads admin scripts</li>
             <li id="define_admin_hooks"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/define_admin_hooks.html">define_admin_hooks()</a>
                 — Defines which class/callbacks are used for admin hook implementations.</li>
+            <li id="define_admin_menu_hooks"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/define_admin_menu_hooks.html">define_admin_menu_hooks()</a>
+                — Defines menu entries for the admin section</li>
             <li id="define_public_hooks"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/define_public_hooks.html">define_public_hooks()</a>
                 — Defines which class/callbacks are used for public hook implementations.</li>
-            <li id="getInstance"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/getInstance.html">getInstance()</a>
+            <li id="get_instance"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/get_instance.html">get_instance()</a>
                 — Gets the singleton instance of self.</li>
             <li id="get_loader"><a title="WpWodify\Overlord" href="../classes/WpWodify_Overlord/get_loader.html">get_loader()</a>
                 — Getter for the loader instance.</li>
@@ -135,6 +141,51 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-01-09T13:06:33-05:00 (commit #<span title="af9535bb3928a2a82a3517f42117cbb6240259f9">af9535b</span>)</h3>
+            <div>
+              <p>
+                        Author: Cory Collier (corycollier@corycollier.com) /
+                        Commiter: Cory Collier (corycollier@corycollier.com)
+                    </p>
+              <pre class="wrapped">PHPCS cleanup,
+Adding enqueue script hook implementations,
+Adding admin_settings page to the pages class, requiring new classes in the main plugin file,
+Stubbing out base Wordpress function definitions for unit testing,
+Adding fields class and associated unit test case,
+Adding settings class and associated unit test case.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-01-06T13:06:39-05:00 (commit #<span title="73fb473da1ee66b92bf88acba93d696f9677c3b8">73fb473</span>)</h3>
+            <div>
+              <p>
+                        Author: Cory Collier (corycollier@corycollier.com) /
+                        Commiter: Cory Collier (corycollier@corycollier.com)
+                    </p>
+              <pre class="wrapped">more moving things around a little, adding unit testing, fixing a few issues</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-01-06T11:15:28-05:00 (commit #<span title="a964adc6d5b36a9f856e14e7c415aa46f1663824">a964adc</span>)</h3>
+            <div>
+              <p>
+                        Author: Cory Collier (corycollier@corycollier.com) /
+                        Commiter: Cory Collier (corycollier@corycollier.com)
+                    </p>
+              <pre class="wrapped">Lots of changes. Finally getting this to a point where it's installable, and displays a settings page. None of it works, but this is a good step in the right direction :)</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-01-06T09:46:52-05:00 (commit #<span title="3958f5c4106ca81019e0a874bbc0495e737fc1ba">3958f5c</span>)</h3>
+            <div>
+              <p>
+                        Author: Cory Collier (corycollier@corycollier.com) /
+                        Commiter: Cory Collier (corycollier@corycollier.com)
+                    </p>
+              <pre class="wrapped">Updating unit test coverage, adding a design folder for logo stuff, removing legacy code, removing procedural code from code coverage reports, updating composer requirements</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-12-31T10:01:00-05:00 (commit #<span title="ef9239c67ca8759b8d147f182ae97d002b4794fd">ef9239c</span>)</h3>
             <div>
