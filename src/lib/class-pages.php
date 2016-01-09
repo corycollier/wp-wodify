@@ -53,6 +53,26 @@ class Pages {
      * Page to display admin settings
      */
     public function admin_settings() {
+        $fields = new Fields;
+        add_settings_section(
+            'section-one',
+            'Section One',
+            null,
+            'wp-wodify-administer'
+        );
+
+        add_settings_field(
+            'wp-wodify-api-key',
+            'Api Key',
+            array($fields, 'input_field'),
+            'wp-wodify-administer',
+            'section-one',
+            array(
+                '!name'  => 'wp-wodify-api-key',
+                '!value' => get_option( 'wp-wodify-api-key' ),
+            )
+        );
+
         $template = $this->get_template();
         $template->set_script('admin-settings-template.php');
         $template->render();

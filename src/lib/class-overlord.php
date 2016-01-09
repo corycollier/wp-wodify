@@ -24,6 +24,7 @@ namespace WpWodify;
  * @author      Cory Collier <corycollier@corycollier.com>
  */
 class Overlord {
+
     /**
      * Singleton property instance.
      *
@@ -89,8 +90,9 @@ class Overlord {
         $loader = $this->get_loader();
 
         if ( true == $is_admin ) {
-            $loader->add_action('admin_init', $this, 'register_settings');
-            $loader->add_action('admin_menu', $this, 'define_admin_menu_hooks');
+            $loader->add_action( 'admin_init', $this, 'register_settings' );
+            $loader->add_action( 'admin_menu', $this, 'define_admin_menu_hooks' );
+            $loader->add_action( 'admin_enqueue_scripts', $this, 'admin_enqueue_scripts' );
         }
 
         return $this;
@@ -102,6 +104,8 @@ class Overlord {
      * @return WpWodify\Overlord Returns $this, for object-chaining.
      */
     public function define_public_hooks() {
+
+        $loader = $this->get_loader();
 
         return $this;
     }
@@ -129,8 +133,8 @@ class Overlord {
     public function run() {
         $this->define_admin_hooks();
         $this->define_public_hooks();
-        $loader = $this->get_loader();
-        $loader->run();
+
+        $this->get_loader()->run();
 
         return $this;
     }
@@ -140,7 +144,7 @@ class Overlord {
      */
     public function define_admin_menu_hooks() {
         $pages = new Pages;
-        $pages->set_template(new Template);
+        $pages->set_template( new Template );
         \add_options_page(
             'WP Wodify Options',
             'WP Wodify',
@@ -148,7 +152,25 @@ class Overlord {
             'wp-wodify-administer',
             array($pages, 'admin_settings')
         );
+
+          // function add_settings_field($id, $title, $callback, $page, $section = 'default', $args = array()) {
+
+          // $types = array('coaches', 'classes', 'locations', 'programs');
+          // foreach ($types as $type) {
+          //   add_action( 'admin_post_wp_wodify_' . $type . '_sync',   'wp_wodify_get_api_' . $type );
+          // }
     }
+
+    /**
+     * Loads admin scripts
+     * @return bool Returns true
+     */
+    public function admin_enqueue_scripts() {
+        $plugin_url = plugin_dir_url( __FILE__ ) . '../';
+        wp_enqueue_script( 'wp_wodify_admin', $plugin_url . '/js/admin.js' );
+        return true;
+    }
+
 }
 
 // INIT CODE

@@ -17,8 +17,9 @@ function add_settings_section ( $id, $title, $callback, $page ) {}
 function esc_attr ( $text ) {}
 function update_option ( $option, $value, $autoload = null ) {}
 function flush_rewrite_rules() {}
-function register_post_type ($post_type, $args = array() ) {}
+function register_post_type ( $post_type, $args = array() ) {}
 function register_taxonomy( $taxonomy, $object_type, $args = array() ) {}
 function wp_remote_get( $url, $args = array() ) {}
 function is_admin() {}
 function add_filter ( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {}
+function add_settings_field( $id, $title, $callback, $page, $section = 'default', $args = array() ) {}

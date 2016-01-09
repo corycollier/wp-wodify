@@ -55,6 +55,8 @@ require_once 'lib/class-loader.php';
 require_once 'lib/class-overlord.php';
 require_once 'lib/class-template.php';
 require_once 'lib/class-pages.php';
+require_once 'lib/class-fields.php';
+require_once 'lib/class-settings.php';
 
 $overlord = WpWodify\Overlord::get_instance();
 if ( PHP_SAPI !== 'cli' ) {

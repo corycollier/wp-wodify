@@ -37,7 +37,6 @@ class PagesTest extends \PHPUnit_Framework_TestCase
         $result = $property->getValue($sut);
 
         $this->assertEquals($expected, $result);
-
     }
 
     /**
@@ -54,7 +53,6 @@ class PagesTest extends \PHPUnit_Framework_TestCase
 
         $result = $sut->get_template($expected);
         $this->assertEquals($expected, $result);
-
     }
 
     /**
@@ -80,6 +78,5 @@ class PagesTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($template));
 
         $sut->admin_settings();
-
     }
 }
